@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+  <apiVersion>47.0</apiVersion>
+  <isExposed>true</isExposed>
+  <masterLabel>AG Grid Datatable</masterLabel>
+  <description>Pass a collection to a Salesforce Datatable which you can then edit in a flow.</description>
+  <targets>
+      <target>lightning__FlowScreen</target>
+  </targets>
+  <targetConfigs>
+    <targetConfig targets="lightning__FlowScreen">
+      <propertyType name="T" extends="SObject" label="Datatable Object API Name" description="Select the API Name of the SObject to use in the Datatable"/>
+      <property name="tableLabel" label="Table Label" type="string" role="inputOnly" description="Header label for the table"/>
+      <property name="tableData" label="Collection" type="{T[]}" role="inputOnly" description="The collection you would like to pass to the datatable"/>
+      <property name="tableColumns" label="Comma seperated column api names" type="String" role="inputOnly" description="A list of column API names for the SObject. All these fields will be editable except the first."/>
+      <property name="allowAddRows" label="Show Add Row button" type="boolean" role="inputOnly" description="Set this to true to allow users to add rows to the table."/>
+      <property name="allowAddExistingRecord" label="Show Add Existing Record Button" type="boolean" role="inputOnly" description="Set this to true to allow users to add rows from existing records of the same type to the table."/>
+      <property name="allowRemoveRecord" label="Show Remove Row Button" type="boolean" role="inputOnly" description="Set this to true to allow users to remove rows from the table."/>
+      <property name="outputTableData" label="Updated Table Data" type="{T[]}" role="outputOnly"/>
+    </targetConfig>
+  </targetConfigs>
+</LightningComponentBundle>

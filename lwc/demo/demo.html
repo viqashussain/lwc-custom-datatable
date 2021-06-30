@@ -1,0 +1,31 @@
+<template>
+    <div style="height: 100%;overflow-x: hidden !important;">
+        <div class="table-header" style="font-size: 16px">{tableLabel}</div>
+        <c-customdatatable onvaluechange={handlePicklistValueChange} key-field="Id" hide-checkbox-column onrowaction={handleRowAction}
+            hide-default-actions onsave={handleSave} onvalueselect={handleLookupSelection} draft-values={draftValues}
+            oncancel={handleCancel} oncellchange={handleCellChange} data={data} columns={columns}>
+        </c-customdatatable>
+        <br />
+        <lightning-button if:true={allowAddRows} variant="brand" label="Add Row" title="Add Row" onclick={addRow}
+            class="slds-m-left_x-small"></lightning-button>
+        <lightning-button if:true={allowAddExistingRecord} variant="brand" label="Add Existing Record"
+            title="Add Existing Record" onclick={handleClickAddExistingRow} class="slds-m-left_x-small">
+        </lightning-button>
+
+        <c-modal if:true={addExistingRecordTypeAttributes} modal-header="Modal Header" modal-tagline="Some tag line" onmodalsave={modalSaveHandler2}
+            modal-save-handler={modalSaveHandler2}>
+            <div slot="modalContent" class="modalContent slds-modal__content slds-p-around_medium">
+                <p>Search for an existing record to add:</p>
+                <c-lookup-lwc onvalueselect={handleAddExistingRowSelection} unique-key={addExistingRecordTypeAttributes.uniqueId} obj-name={addExistingRecordTypeAttributes.objectType}
+                    icon-name={addExistingRecordTypeAttributes.icon} label-name={addExistingRecordTypeAttributes.label}
+                    display-fields={addExistingRecordTypeAttributes.displayFields} display-format={addExistingRecordTypeAttributes.displayFormat}
+                    value-id={addExistingRecordTypeAttributes.valueId} field-name={addExistingRecordTypeAttributes.fieldName}
+                    placeholder={addExistingRecordTypeAttributes.placeholder}
+                    additional-search-field={addExistingRecordTypeAttributes.additionalSearchField}>
+                </c-lookup-lwc>
+                <p>Once you've selected a record you would like to add, click "save" to proceed.</p>
+            </div>
+        </c-modal>
+
+    </div>
+</template>
